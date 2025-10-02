@@ -20,5 +20,10 @@ public class Main {
 
         Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 
+        if (connection != null) {
+            System.out.println("Successfully connected to database.");
+        } else  {
+            System.out.println("Failed to connect to database.");
+        }
     }
 }
