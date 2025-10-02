@@ -14,7 +14,7 @@ public class Main {
 
     static String firstName = "Igire";
     static String lastName = "Rwanda";
-    static String email = "Igire@gmail.com";
+    static String email = "Igire232121@gmail.com";
     static Date dateOfBirth = Date.valueOf(LocalDate.now());
 
     public static void main(String[] args) throws SQLException {
@@ -27,7 +27,7 @@ public class Main {
         Student student = new Student(firstName, lastName, email, dateOfBirth);
 
         if (connection != null) {
-            System.out.println(student.addStudent(connection));
+            System.out.println(student.updateStudent(connection, 1,firstName, lastName, email, dateOfBirth));
         } else  {
             System.out.println("Failed to connect to database.");
         }

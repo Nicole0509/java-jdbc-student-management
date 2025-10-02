@@ -56,14 +56,39 @@ public class Student {
         String query = "INSERT INTO students (first_name,last_name,email,date_of_birth) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
 
-        statement.setString(1, firstName);
-        statement.setString(2, lastName);
-        statement.setString(3, email);
-        statement.setDate(4, dateOfBirth);
+        statement.setString(1, this.firstName);
+        statement.setString(2, this.lastName);
+        statement.setString(3, this.email);
+        statement.setDate(4, this.dateOfBirth);
         statement.executeUpdate();
 
         statement.close();
 
         return "Student created sucessfully!";
     }
+
+    public String updateStudent(Connection connection, int id, String firstName, String lastName, String email, Date dateOfBirth) throws SQLException {
+        String query = """
+                UPDATE students SET 
+                    first_name = ?,
+                    last_name = ?,
+                    email = ?,
+                    date_of_birth = ?
+                WHERE id = ?
+                """;
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, firstName);
+        statement.setString(2, lastName);
+        statement.setString(3, email);
+        statement.setDate(4, dateOfBirth);
+        statement.setInt(5, id);
+        statement.executeUpdate();
+
+        int rowsUpdated = statement.executeUpdate();
+
+        statement.close();
+
+        return rowsUpdated > 0 ? "Student updated successfully!" : "No student found with that ID.";
+    }
+
 }
