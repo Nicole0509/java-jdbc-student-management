@@ -1,9 +1,7 @@
 package org.example;
-import java.sql.Date;
+import com.sun.nio.sctp.AbstractNotificationHandler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Student {
 
@@ -100,5 +98,22 @@ public class Student {
         statement.executeUpdate();
 
         return "Student deleted successfully!";
+    }
+
+    public String getAllStudents(Connection connection) throws SQLException {
+        String query = "SELECT * FROM students";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery();
+
+        while(resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String firstName = resultSet.getString("first_name");
+            String lastName = resultSet.getString("last_name");
+            String email = resultSet.getString("email");
+            Date dateOfBirth = resultSet.getDate("date_of_birth");
+
+            System.out.println(id + " " + firstName + " " + lastName + " " + email + " " + dateOfBirth);
+        }
+        return "";
     }
 }

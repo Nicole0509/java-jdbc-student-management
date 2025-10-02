@@ -12,9 +12,9 @@ public class Main {
     static String USER = "postgres";
     static String PASSWORD = "Nicole0509";
 
-    static String firstName = "Igire";
+    static String firstName = "Alice";
     static String lastName = "Rwanda";
-    static String email = "Igire232121@gmail.com";
+    static String email = "alice@gmail.com";
     static Date dateOfBirth = Date.valueOf(LocalDate.now());
 
     public static void main(String[] args) throws SQLException {
@@ -27,7 +27,7 @@ public class Main {
         Student student = new Student(firstName, lastName, email, dateOfBirth);
 
         if (connection != null) {
-            System.out.println(student.deleteStudent(connection, 1));
+            System.out.println(student.getAllStudents(connection));
         } else  {
             System.out.println("Failed to connect to database.");
         }
