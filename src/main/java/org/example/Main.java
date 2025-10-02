@@ -3,15 +3,19 @@ package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Scanner;
+import java.sql.Date;
+import java.time.LocalDate;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
     static String URL = "jdbc:postgresql://localhost:5432/postgres?currentSchema=public";
     static String USER = "postgres";
     static String PASSWORD = "Nicole0509";
+
+    static String firstName = "Igire";
+    static String lastName = "Rwanda";
+    static String email = "Igire@gmail.com";
+    static Date dateOfBirth = Date.valueOf(LocalDate.now());
 
     public static void main(String[] args) throws SQLException {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
@@ -20,8 +24,10 @@ public class Main {
 
         Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 
+        Student student = new Student(firstName, lastName, email, dateOfBirth);
+
         if (connection != null) {
-            System.out.println("Successfully connected to database.");
+            System.out.println(student.addStudent(connection));
         } else  {
             System.out.println("Failed to connect to database.");
         }

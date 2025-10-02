@@ -1,4 +1,5 @@
 package org.example;
+import java.sql.Date;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private String email;
-    private String dateOfBirth;
+    private Date dateOfBirth;
 
     public String getFirstName() {
         return firstName;
@@ -35,33 +36,34 @@ public class Student {
         this.email = email;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public  Student(String firstName, String lastName, String email, String dateOfBirth) {
+    public  Student(String firstName, String lastName, String email, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void addStudent(Connection connection) throws SQLException {
+    public String addStudent(Connection connection) throws SQLException {
 
-        String query = "INSERT INTO students VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO students (first_name,last_name,email,date_of_birth) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(query);
 
         statement.setString(1, firstName);
         statement.setString(2, lastName);
         statement.setString(3, email);
-        statement.setString(4, dateOfBirth);
+        statement.setDate(4, dateOfBirth);
         statement.executeUpdate();
 
         statement.close();
 
+        return "Student created sucessfully!";
     }
 }
