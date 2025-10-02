@@ -27,7 +27,7 @@ public class Main {
         Student student = new Student(firstName, lastName, email, dateOfBirth);
 
         if (connection != null) {
-            System.out.println(student.updateStudent(connection, 1,firstName, lastName, email, dateOfBirth));
+            System.out.println(student.deleteStudent(connection, 1));
         } else  {
             System.out.println("Failed to connect to database.");
         }

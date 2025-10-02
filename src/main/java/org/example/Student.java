@@ -91,4 +91,14 @@ public class Student {
         return rowsUpdated > 0 ? "Student updated successfully!" : "No student found with that ID.";
     }
 
+    public String deleteStudent(Connection connection, int id) throws SQLException {
+        String query = """
+                DELETE FROM students WHERE id = ?
+        """;
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, id);
+        statement.executeUpdate();
+
+        return "Student deleted successfully!";
+    }
 }
