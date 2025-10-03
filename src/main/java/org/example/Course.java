@@ -27,11 +27,28 @@ public class Course extends CourseFeatures implements CourseInterface {
         return "Courses created sucessfully";
     }
 
-    public String updateCourse() {
+    public String updateCourse(Connection connection, int id, String courseName, String courseDescription) throws SQLException {
+        setCourseName(courseName);
+        setCourseDescription(courseDescription);
+
+        String query = """
+                UPDATE courses SET 
+                    course_name = ?,
+                    course_description = ?
+                WHERE id = ?
+                """;
+
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, getCourseName());
+        statement.setString(2, getCourseDescription());
+        statement.setInt(3, id);
+        statement.executeUpdate();
+
+        statement.close();
         return "Courses updated sucessfully";
     }
 
-    public String deleteCourse() {
+    public String deleteCourse(Connection connection) throws SQLException{
         return "Courses deleted sucessfully";
     }
 }
