@@ -1,8 +1,6 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Course extends CourseFeatures implements CourseInterface {
     public Course(String courseName, String courseDescription){
@@ -12,6 +10,19 @@ public class Course extends CourseFeatures implements CourseInterface {
     }
     public String getAllCourses (Connection connection) throws SQLException {
 
+        String query = "SELECT * FROM courses";
+
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery();
+
+        while(resultSet.next()) {
+            int id = resultSet.getInt("id");
+
+            setCourseName(resultSet.getString("course_name"));
+            setCourseDescription(resultSet.getString("course_description"));
+
+            System.out.println(id + "\t " + getCourseName()+ " \t" + getCourseDescription());
+        }
         return "View Courses";
     }
 

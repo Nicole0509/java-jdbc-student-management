@@ -28,7 +28,8 @@ public class Main {
 
         Course course = new Course("MAT4"," Mathematics IV");
 //        System.out.println(course.createCourse(connection));
-        System.out.println(course.updateCourse(connection,1,"OS1","Operating Systems"));
+//        System.out.println(course.updateCourse(connection,1,"OS1","Operating Systems"));
+        course.getAllCourses(connection);
 
         if (connection != null) {
             System.out.println(student.getAllStudents(connection));
