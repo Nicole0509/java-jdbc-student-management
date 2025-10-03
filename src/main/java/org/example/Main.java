@@ -29,10 +29,14 @@ public class Main {
         Course course = new Course("MAT4"," Mathematics IV");
 //        System.out.println(course.createCourse(connection));
 //        System.out.println(course.updateCourse(connection,1,"OS1","Operating Systems"));
-        course.getAllCourses(connection);
+//        course.getAllCourses(connection);
+
+        System.out.println( course.deleteCourse(connection,2));
 
         if (connection != null) {
-            System.out.println(student.getAllStudents(connection));
+//            System.out.println(student.getAllStudents(connection));
+
+
         } else  {
             System.out.println("Failed to connect to database.");
         }

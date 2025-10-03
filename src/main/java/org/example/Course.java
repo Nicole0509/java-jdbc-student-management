@@ -59,7 +59,13 @@ public class Course extends CourseFeatures implements CourseInterface {
         return "Courses updated sucessfully";
     }
 
-    public String deleteCourse(Connection connection) throws SQLException{
+    public String deleteCourse(Connection connection, int id) throws SQLException{
+        String query = """
+                DELETE FROM courses WHERE id = ?
+        """;
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, id);
+        statement.executeUpdate();
         return "Courses deleted sucessfully";
     }
 }
