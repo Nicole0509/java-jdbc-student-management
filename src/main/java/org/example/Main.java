@@ -26,8 +26,8 @@ public class Main {
 
         Student student = new Student(firstName, lastName, email, dateOfBirth);
 
-        Course course = new Course("MAT2"," Mathematics II");
-        course.getAllCourses();
+        Course course = new Course("MAT4"," Mathematics IV");
+        System.out.println(course.createCourse(connection));
 
         if (connection != null) {
             System.out.println(student.getAllStudents(connection));
