@@ -4,6 +4,11 @@ public class CourseFeatures {
     private String courseName;
     private String courseDescription;
 
+    public CourseFeatures(String courseName, String courseDescription) {
+        this.courseName = courseName;
+        this.courseDescription = courseDescription;
+    }
+
     public String getCourseName() {
         return courseName;
     }

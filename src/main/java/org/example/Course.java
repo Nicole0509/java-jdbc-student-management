@@ -1,10 +1,14 @@
 package org.example;
 
-public class Course implements CourseInterface {
-    public Course(){
+public class Course extends CourseFeatures implements CourseInterface {
+    public Course(String courseName, String courseDescription){
         System.out.println("Course Constructor");
+
+        super(courseName,courseDescription);
     }
     public String getAllCourses () {
+        System.out.println("Course Name: " + getCourseName());
+        System.out.println("Course Description: " + getCourseDescription());
         return "View Courses";
     }
 
